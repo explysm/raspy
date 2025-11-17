@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-🍓 raspy
-A simple, lightweight data parser for the Raspberry (RAS) custom line-delimited list format.
-💡 Overview
-raspy-format is a Python library designed to easily read and parse files written in the custom Raspberry (RAS) format. The format is designed around named lists (listname- to +) where each item is a comma-separated record that distinguishes between quoted strings and unquoted numbers/booleans.
-=======
 # raspy-format: A Lightweight RAS Data Parser
 
 A Python library for parsing and accessing data from custom Raspberry (RAS) format files.
@@ -11,14 +5,17 @@ A Python library for parsing and accessing data from custom Raspberry (RAS) form
 ## 💡 Overview
 
 `raspy-format` is a Python library designed for efficient parsing and retrieval of data from files structured in the custom Raspberry (RAS) format. This format is built around named, line-delimited lists, where each entry is a comma-separated record capable of distinguishing between quoted strings and unquoted numerical or boolean values.
->>>>>>> a89483d (Refactor: Improve README.md content and formatting)
-Key Features
+
+## Key Features
  * Type Safe: Automatically converts unquoted values into native Python types (int, float, bool).
  * List-Indexed Access: Provides a powerful rasp_get() function for specific data retrieval via list name, item index, and sub-item index.
  * CSV Compliant: Correctly handles quoted strings that contain internal commas.
-🛠️ Installation
+
+## 🛠️ Installation
 You can install raspy-format using pip:
+```bash
 pip install raspy-format
+```
 
 ## 📝 RAS Format Syntax
 
@@ -123,8 +120,9 @@ print(f"Available: {is_available} (Type: {type(is_available).__name__})")
 # Output: Available: True (Type: bool)
 ```
 
-⚙️ Development and Contribution
+## ⚙️ Development and Contribution
 If you find issues or want to expand the features (e.g., adding comment support, nested lists), feel free to open a pull request on the official repository.
+
 ### Running Tests
 
 To run the tests, use `pytest`:
@@ -132,9 +130,11 @@ To run the tests, use `pytest`:
 ```bash
 pytest
 ```
-Building the Package
+
+### Building the Package
+```bash
 python setup.py sdist bdist_wheel
+```
 
-📜 License
+## 📜 License
 This project is licensed under the MIT License.
-

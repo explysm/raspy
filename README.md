@@ -12,9 +12,15 @@ A Python library for parsing and accessing data from custom Raspberry (RAS) form
  * CSV Compliant: Correctly handles quoted strings that contain internal commas.
 
 ## 🛠️ Installation
-You can install raspy-format using pip:
+You can install raspy-format by first cloning the repo:
 ```bash
-pip install raspy-format
+git clone https://github.com/explysm/raspy.git
+```
+And then installing it:
+```bash
+cd raspy
+
+pip install ./
 ```
 
 ## 📝 RAS Format Syntax

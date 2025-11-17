@@ -1,4 +1,4 @@
-🍓 raspy-format
+🍓 raspy
 A simple, lightweight data parser for the Raspberry (RAS) custom line-delimited list format.
 💡 Overview
 raspy-format is a Python library designed to easily read and parse files written in the custom Raspberry (RAS) format. The format is designed around named lists (listname- to +) where each item is a comma-separated record that distinguishes between quoted strings and unquoted numbers/booleans.

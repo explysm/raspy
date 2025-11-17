@@ -1,3 +1,6 @@
+![DISCLAIMER]
+> This entire project is vibe-coded. i just thought that it would be a cool thing to just make.
+
 # raspy-format: A Lightweight RAS Data Parser
 
 A Python library for parsing and accessing data from custom Raspberry (RAS) format files.

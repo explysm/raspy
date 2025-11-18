@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='raspy-format',  # The name users will type: pip install raspy-format
-    version='0.1.0',
+    version='0.1.1',
     description='A simple, lightweight data format parser based on custom RAS rules.',
     author='Your Name',
     url='https://github.com/YourUsername/raspy-format', # Link to your GitHub repo

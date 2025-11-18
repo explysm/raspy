@@ -11,7 +11,8 @@ A Python library for parsing and accessing data from custom Raspberry (RAS) form
 
 ## Key Features
  * Type Safe: Automatically converts unquoted values into native Python types (int, float, bool).
- * List-Indexed Access: Provides a powerful rasp_get() function for specific data retrieval via list name, item index, and sub-item index.
+ * Type Hinted: All public functions include type hints for improved readability and maintainability.
+ * List-Indexed Access: Provides a powerful get() function for specific data retrieval via list name, item index, and sub-item index.
  * CSV Compliant: Correctly handles quoted strings that contain internal commas.
 
 ## 🛠️ Installation
@@ -35,6 +36,7 @@ The RAS format defines data lists using specific opening and closing delimiters,
 | List Opening | `listname-` | Starts a named data list. |
 | List Closing | `+` | Closes the current data list. |
 | Item Separation | `,` | Separates fields within a data line. |
+| Comment | `#` | Marks the rest of the line as a comment. |
 
 ### Data Type Rules
 
@@ -60,7 +62,7 @@ item_2,False,100
 
 ## 🚀 Usage
 
-The library provides two primary functions: `parse_ras_data` and the main access function, `rasp_get`.
+The library provides two primary functions: `parse_ras_data` and the main access function, `get`.
 
 ### 1. Parsing the Data
 
@@ -95,9 +97,9 @@ print(data_store)
 # }
 ```
 
-### 2. Accessing Specific Values with `rasp_get()`
+### 2. Accessing Specific Values with `get()`
 
-The `rasp_get()` function directly takes a file path and uses a three-part index for precise retrieval:
+The `get()` function directly takes a file path and uses a three-part index for precise retrieval:
 
 | Argument | Description | Indexing |
 |---|---|---|
@@ -114,36 +116,53 @@ The `rasp_get()` function directly takes a file path and uses a three-part index
 data_file_path = "data.ras" # Or provide the full path
 
 # 1. Get the stock level (sub-item 2) for item_alpha (item index 0)
-stock_level = raspy_format.rasp_get(data_file_path, "products", 0, 2)
+stock_level = raspy_format.get(data_file_path, "products", 0, 2)
 print(f"Stock: {stock_level} (Type: {type(stock_level).__name__})")
 # Output: Stock: 100 (Type: int)
 
 # 2. Get the name/description (sub-item 1) for item_beta (item index 1)
-description = raspy_format.rasp_get(data_file_path, "products", 1, 1)
+description = raspy_format.get(data_file_path, "products", 1, 1)
 print(f"Description: {description}")
 # Output: Description: Beta Product, with comma
 
 # 3. Check the availability boolean (sub-item 1) for product1 (item index 0)
-is_available = raspy_format.rasp_get(data_file_path, "status", 0, 1)
+is_available = raspy_format.get(data_file_path, "status", 0, 1)
 print(f"Available: {is_available} (Type: {type(is_available).__name__})")
 # Output: Available: True (Type: bool)
 ```
 
-## ⚙️ Development and Contribution
-If you find issues or want to expand the features (e.g., adding comment support, nested lists), feel free to open a pull request on the official repository.
+### 3. Converting Data with `convert()`
 
-### Running Tests
+The `convert()` function allows you to transform RAS data files into other structured formats. Currently, it supports conversion to JSON.
 
-To run the tests, use `pytest`:
+| Argument | Description |
+|---|---|
+| `ras_file_path` | The path to the input RAS data file. |
+| `data_type` | The target data type for conversion (e.g., `"json"`). |
+| `output_file_path` | The path where the converted data will be saved. |
 
-```bash
-pytest
+#### Conversion Example
+
+```python
+import raspy_format
+import os
+
+# Assuming data.ras is in the same directory as your script
+data_file_path = "data.ras"
+json_output_path = "output.json"
+
+# Convert the RAS file to JSON
+raspy_format.convert(data_file_path, "json", json_output_path)
+
+# Verify the content of the generated JSON file
+with open(json_output_path, 'r') as f:
+    print(f.read())
+
+# Clean up the generated JSON file (optional)
+os.remove(json_output_path)
 ```
 
-### Building the Package
-```bash
-python setup.py sdist bdist_wheel
-```
+
 
 ## 📜 License
 This project is licensed under the MIT License.
